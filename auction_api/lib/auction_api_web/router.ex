@@ -26,6 +26,12 @@ defmodule AuctionApiWeb.Router do
     forward("/graphiql", Absinthe.Plug.GraphiQL, schema: AuctionApiWeb.Schema)
 
     forward("/", Absinthe.Plug, schema: AuctionApiWeb.Schema)
+
+
+    resources "/auctions", AuctionController, only: [:create]
+    get "/auctions/current", AuctionController, :current
+
+    resources "/bids", BidController, only: [:create]
   end
 
   # Other scopes may use custom stacks.
